@@ -1,0 +1,18 @@
+# Data Processing Configuration - HackerNews Test Data
+
+# File Paths
+files:
+  input: "data/raw/hackernews/hn_test_nov2024.csv"
+  output: "data/processed/hackernews/hn_test_nov2024_processed.csv"
+
+# Processing Parameters
+processing:
+  text_field: "title"           # Which field contains the text
+  min_word_length: 3            # Minimum word length to keep
+  remove_stopwords: true        # Remove common words (the, a, is, etc.)
+
+# Metadata
+metadata:
+  source: "Hacker News"
+  description: "Process November 2024 test data"
+  processed_date: "2024-12-03"

@@ -1,0 +1,18 @@
+# Data Processing Configuration - May-July 2024
+
+# File Paths
+files:
+  input: "data/raw/hackernews/hn_may_july_2024.csv"
+  output: "data/processed/hackernews/hn_may_july_2024_processed.csv"
+
+# Processing Parameters
+processing:
+  text_field: "title"
+  min_word_length: 3
+  remove_stopwords: true
+
+# Metadata
+metadata:
+  source: "Hacker News"
+  description: "Process May-July 2024 data"
+  processed_date: "2024-12-03"

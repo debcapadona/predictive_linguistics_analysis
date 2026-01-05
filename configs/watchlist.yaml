@@ -1,0 +1,27 @@
+# Watchlist - Words to always track regardless of frequency
+# Use for: proper names, ambiguous words (trump = person/verb), critical terms
+
+watchlist:
+  # Political figures
+  - trump
+  - biden
+  - harris
+  
+  # Tech companies/people
+  - musk
+  - bezos
+  - zuckerberg
+  
+  # Critical events/terms
+  - assassination
+  - crash
+  - collapse
+  - war
+  
+  # Add more as needed
+  
+# Settings
+watchlist_settings:
+  case_sensitive: false
+  min_occurrences: 1  # Track even if appears once
+  highlight_in_output: true

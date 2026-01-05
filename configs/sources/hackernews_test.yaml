@@ -1,0 +1,23 @@
+# Hacker News Collector Configuration - TEST
+# Short date range for testing (30 days)
+
+# Date Range
+date_range:
+  start_date: "2024-11-01"
+  end_date: "2024-12-01"
+
+# API Configuration
+api:
+  base_url: "https://hn.algolia.com/api/v1/search_by_date"
+  stories_per_day: 30
+  delay_seconds: 1
+
+# Output Configuration
+output:
+  file: "data/raw/hackernews/hn_test_nov2024.csv"
+  
+# Metadata
+metadata:
+  source: "Hacker News"
+  description: "Test collection - November 2024"
+  collected_date: "2024-12-03"

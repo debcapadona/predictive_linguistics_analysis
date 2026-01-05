@@ -1,0 +1,23 @@
+# Hacker News Collector Configuration
+# May-July 2024 (3 months for event analysis)
+
+# Date Range
+date_range:
+  start_date: "2024-05-01"
+  end_date: "2024-08-01"
+
+# API Configuration
+api:
+  base_url: "https://hn.algolia.com/api/v1/search_by_date"
+  stories_per_day: 30
+  delay_seconds: 1
+
+# Output Configuration
+output:
+  file: "data/raw/hackernews/hn_may_july_2024.csv"
+  
+# Metadata
+metadata:
+  source: "Hacker News"
+  description: "May-July 2024 - 3 month analysis period"
+  collected_date: "2024-12-03"

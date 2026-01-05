@@ -1,0 +1,18 @@
+# Hacker News Collector - 2025 (Jan 1 - Dec 3)
+
+date_range:
+  start_date: "2025-01-01"
+  end_date: "2025-12-04"
+
+api:
+  base_url: "https://hn.algolia.com/api/v1/search_by_date"
+  stories_per_day: 30
+  delay_seconds: 1
+
+output:
+  file: "data/raw/hackernews/hn_2025_ytd.csv"
+  
+metadata:
+  source: "Hacker News"
+  description: "2025 Year-to-date (338 days)"
+  collected_date: "2025-12-04"

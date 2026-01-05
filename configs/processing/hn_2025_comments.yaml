@@ -1,0 +1,13 @@
+files:
+  input: "data/raw/hackernews/hn_2025_ytd_comments.csv"
+  output: "data/processed/hackernews/hn_2025_ytd_comments_processed.csv"
+
+processing:
+  text_field: "text"
+  min_word_length: 3
+  remove_stopwords: true
+
+metadata:
+  source: "Hacker News Comments"
+  description: "Process 2025 YTD comments"
+  processed_date: "2025-12-04"

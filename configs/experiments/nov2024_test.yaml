@@ -1,0 +1,21 @@
+# Experiment Configuration - November 2024 Test
+# Short test to validate entropy analysis
+
+# Date Ranges (3 periods of ~10 days each)
+date_ranges:
+  baseline_start: "2024-11-01"
+  baseline_end: "2024-11-11"
+  monitoring_start: "2024-11-11"
+  monitoring_end: "2024-11-21"
+  event_start: "2024-11-21"
+  event_end: "2024-12-01"
+
+# Files
+files:
+  input: "data/processed/hackernews/hn_test_nov2024_processed.csv"
+  output_dir: "data/analysis"
+  output_prefix: "nov2024_test"
+
+# Parameters (not used by entropy but included for consistency)
+parameters:
+  min_z_score: 2.0

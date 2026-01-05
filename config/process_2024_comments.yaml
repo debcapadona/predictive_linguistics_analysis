@@ -1,0 +1,8 @@
+files:
+  input: "data/raw/hackernews/hn_2024_full_year_comments.csv"
+  output: "data/processed/hackernews/hn_2024_comments_processed.csv"
+
+processing:
+  text_field: "text"
+  min_word_length: 3
+  remove_stopwords: true

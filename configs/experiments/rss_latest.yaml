@@ -1,0 +1,24 @@
+# Experiment Configuration - RSS Feeds Latest
+# Analyze recent RSS feed data
+
+# Date Ranges - adjust based on your collected data
+# RSS feeds typically only have last 30-60 days
+date_ranges:
+  baseline_start: "2024-10-01"
+  baseline_end: "2024-10-21"
+  monitoring_start: "2024-10-21"
+  monitoring_end: "2024-11-10"
+  event_start: "2024-11-10"
+  event_end: "2024-12-01"
+
+# Files
+files:
+  input: "data/processed/rss/rss_feeds_latest_processed.csv"
+  output_dir: "data/analysis"
+  output_prefix: "rss_latest"
+
+# Parameters
+parameters:
+  min_z_score: 2.0
+  min_word_freq: 3  # Lower threshold for RSS (less data)
+  top_n_words: 50

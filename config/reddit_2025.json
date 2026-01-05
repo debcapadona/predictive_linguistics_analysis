@@ -1,0 +1,21 @@
+{
+  "year": 2025,
+  "start_date": "2025-01-01",
+  "end_date": "2025-12-31",
+  "database": "data/reddit_2025.db",
+  "subreddits": [
+    "technology",
+    "worldnews",
+    "programming",
+    "news",
+    "politics",
+    "science",
+    "AskReddit",
+    "wallstreetbets",
+    "CryptoCurrency",
+    "artificial"
+  ],
+  "rate_limit_delay": 1.0,
+  "chunk_size": 50,
+  "comments_per_post": 100
+}

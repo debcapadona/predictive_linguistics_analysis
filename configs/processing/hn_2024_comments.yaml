@@ -1,0 +1,15 @@
+# Data Processing - 2024 HN Comments
+
+files:
+  input: "data/raw/hackernews/hn_2024_full_year_comments.csv"
+  output: "data/processed/hackernews/hn_2024_full_year_comments_processed.csv"
+
+processing:
+  text_field: "text"  # Comments have 'text' field, not 'title'
+  min_word_length: 3
+  remove_stopwords: true
+
+metadata:
+  source: "Hacker News Comments"
+  description: "Process 2024 full year comments"
+  processed_date: "2025-12-04"

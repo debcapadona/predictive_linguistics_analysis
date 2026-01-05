@@ -1,0 +1,50 @@
+# Weekly Analysis Configuration
+# Faster signal detection with 1-week windows
+
+# Date Ranges - July 2024 event testing
+# Baseline: June 10-17, Monitoring: June 17-24, Event: June 24-July 1
+date_ranges:
+  baseline_start: "2024-06-10"
+  baseline_end: "2024-06-17"
+  monitoring_start: "2024-06-17"
+  monitoring_end: "2024-06-24"
+  event_start: "2024-06-24"
+  event_end: "2024-07-01"
+
+# Analysis Parameters
+parameters:
+  # Lower thresholds for shorter time windows
+  min_z_score: 1.5
+  min_word_freq: 3
+  
+  # Cluster parameters
+  min_cluster_size: 2
+  max_cluster_size: 8
+  min_cooccurrence: 2
+  
+  # Semantic similarity
+  similarity_threshold: 0.55
+  
+  # Topic modeling
+  n_topics: 10
+  top_words_per_topic: 8
+  
+  # Display limits
+  top_n_words: 30
+  top_n_clusters: 10
+  top_n_topics: 10
+  top_n_temporal: 20
+
+# Input/Output Files
+files:
+  input: "data/processed/hackernews_training_processed.csv"
+  output_dir: "data/analysis"
+  output_prefix: "weekly_june_2024"
+
+# Enabled Analyzers
+analyzers:
+  word_frequency: true
+  cluster: true
+  topic: false  # Skip topic modeling for weekly (needs more data)
+  semantic: true
+  temporal: true

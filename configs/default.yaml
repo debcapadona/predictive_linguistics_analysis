@@ -1,0 +1,53 @@
+# Default Configuration - May-June-July 2024 Analysis
+# Standard monthly analysis for backtesting
+
+# Date Ranges
+# Format: YYYY-MM-DD
+date_ranges:
+  baseline_start: "2024-05-01"
+  baseline_end: "2024-06-01"
+  monitoring_start: "2024-06-01"
+  monitoring_end: "2024-07-01"
+  event_start: "2024-07-01"
+  event_end: "2024-08-01"
+
+# Analysis Parameters
+parameters:
+  # Z-score threshold for significance (2.0 = 95% confidence)
+  min_z_score: 2.0
+  
+  # Minimum word frequency in monitoring period
+  min_word_freq: 5
+  
+  # Cluster parameters
+  min_cluster_size: 2
+  max_cluster_size: 10
+  min_cooccurrence: 3
+  
+  # Semantic similarity threshold (0-1)
+  similarity_threshold: 0.6
+  
+  # Topic modeling
+  n_topics: 12
+  top_words_per_topic: 10
+  
+  # Display limits
+  top_n_words: 40
+  top_n_clusters: 15
+  top_n_topics: 12
+  top_n_temporal: 25
+
+# Input/Output Files
+files:
+  input: "data/processed/hackernews_training_processed.csv"
+  output_dir: "data/analysis"
+  output_prefix: "may_june_july_2024"
+
+# Enabled Analyzers
+# Set to false to skip an analyzer
+analyzers:
+  word_frequency: true
+  cluster: true
+  topic: true
+  semantic: true
+  temporal: true

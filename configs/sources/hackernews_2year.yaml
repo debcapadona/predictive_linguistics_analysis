@@ -1,0 +1,23 @@
+# Hacker News Collector Configuration
+# Collects 2 years of historical data (2023-2024)
+
+# Date Range
+date_range:
+  start_date: "2023-01-01"
+  end_date: "2024-12-31"
+
+# API Configuration
+api:
+  base_url: "https://hn.algolia.com/api/v1/search_by_date"
+  stories_per_day: 30
+  delay_seconds: 1  # Delay between requests (be polite to API)
+
+# Output Configuration
+output:
+  file: "data/raw/hackernews/hn_2023_2024.csv"
+  
+# Metadata
+metadata:
+  source: "Hacker News"
+  description: "2 years of Hacker News top stories"
+  collected_date: "2024-12-03"

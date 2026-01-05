@@ -1,0 +1,18 @@
+# Data Processing Configuration - RSS Feeds
+
+# File Paths
+files:
+  input: "data/raw/rss/rss_feeds_latest.csv"
+  output: "data/processed/rss/rss_feeds_latest_processed.csv"
+
+# Processing Parameters
+processing:
+  text_field: "title"  # Process article titles
+  min_word_length: 3
+  remove_stopwords: true
+
+# Metadata
+metadata:
+  source: "RSS Feeds"
+  description: "Process RSS feed articles"
+  processed_date: "2024-12-03"

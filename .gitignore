@@ -1,0 +1,26 @@
+# Data files
+data/
+postgres_data/
+
+# Model files  
+models/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+10
+2.0
+test_groq.py

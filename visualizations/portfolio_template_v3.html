@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linguistic Analysis Platform - Debra Capadona</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.4;
+            color: #2c3e50;
+            background: #f5f7fa;
+        }
+        
+        /* Layout: Sidebar + Main */
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background: #1a1d29;
+            color: white;
+            padding: 30px 20px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .sidebar-header {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-header h1 {
+            font-size: 1.3em;
+            margin-bottom: 8px;
+            color: #4facfe;
+        }
+        
+        .sidebar-header .tagline {
+            font-size: 0.85em;
+            color: #a8b2c1;
+            line-height: 1.4;
+        }
+        
+        /* Sidebar Stats */
+        .sidebar-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #2a2f3f;
+        }
+        
+        .sidebar-stat {
+            text-align: center;
+        }
+        
+        .sidebar-stat-value {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #4facfe;
+        }
+        
+        .sidebar-stat-label {
+            font-size: 0.7em;
+            color: #6c7a8f;
+            margin-top: 4px;
+            line-height: 1.3;
+        }
+        
+        .nav-section {
+            margin-bottom: 30px;
+        }
+        
+        .nav-section-title {
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #6c7a8f;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .nav-item {
+            padding: 12px 15px;
+            margin-bottom: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .nav-item:hover {
+            background: #252938;
+        }
+        
+        .nav-item.active {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        
+        .nav-icon {
+            font-size: 1.2em;
+        }
+        
+        /* Main Content Area */
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 0;
+        }
+        
+        /* Hero - MINIMAL */
+        .hero {
+            background: linear-gradient(135deg, #1a1d29 0%, #2a2f3f 100%);
+            color: white;
+            padding: 40px 40px;
+        }
+        
+        .hero h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .hero p {
+            color: #a8b2c1;
+            font-size: 1em;
+        }
+        
+        /* Content Sections (Swappable) */
+        .content-section {
+            display: none;
+            padding: 40px;
+            min-height: calc(100vh - 140px);
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .metric-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #4facfe;
+            transition: transform 0.3s;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .metric-card .icon {
+            font-size: 2em;
+            margin-bottom: 12px;
+        }
+        
+        .metric-card .value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #1a1d29;
+            margin-bottom: 10px;
+        }
+        
+        .metric-card .label {
+            color: #6c7a8f;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        /* Visualization Container */
+        .viz-container {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+        
+        .viz-container h3 {
+            margin-bottom: 20px;
+            color: #1a1d29;
+            font-size: 1.3em;
+        }
+        
+        .viz-placeholder {
+            background: #f5f7fa;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            color: #6c7a8f;
+            border: 2px dashed #d1d8e0;
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        /* Tech Stack */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .tech-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .tech-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .tech-item .tech-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .tech-item .tech-name {
+            font-size: 0.9em;
+            font-weight: 600;
+            color: #1a1d29;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .app-container {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 25px 20px;
+            }
+            
+            .hero h2 {
+                font-size: 1.5em;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- SIDEBAR NAVIGATION -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1>Linguistic Analysis Platform</h1>
+                <p class="tagline">Large-scale NLP system demonstrating technical program management & data engineering</p>
+            </div>
+            
+            <!-- Quick Stats -->
+            <div class="sidebar-stats">
+                <div class="sidebar-stat">
+                    <div class="sidebar-stat-value">⚡ 300</div>
+                    <div class="sidebar-stat-label">Stories/Sec<br>GPU</div>
+                </div>
+                <div class="sidebar-stat">
+                    <div class="sidebar-stat-value">🗄️ 5.2M</div>
+                    <div class="sidebar-stat-label">Word<br>Associations</div>
+                </div>
+                <div class="sidebar-stat">
+                    <div class="sidebar-stat-value">🎯 0.76</div>
+                    <div class="sidebar-stat-label">Best<br>Correlation</div>
+                </div>
+                <div class="sidebar-stat">
+                    <div class="sidebar-stat-value">📈 67</div>
+                    <div class="sidebar-stat-label">Topic<br>Taxonomy</div>
+                </div>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Analysis Tools</div>
+                <div class="nav-item active" onclick="showSection('overview')">
+                    <span class="nav-icon">📊</span>
+                    <span>Overview</span>
+                </div>
+                <div class="nav-item" onclick="showSection('dimensions')">
+                    <span class="nav-icon">📈</span>
+                    <span>Linguistic Dimensions</span>
+                </div>
+                <div class="nav-item" onclick="showSection('word-bursts')">
+                    <span class="nav-icon">💬</span>
+                    <span>Word Burst Analysis</span>
+                </div>
+                <div class="nav-item" onclick="showSection('coherence')">
+                    <span class="nav-icon">🎯</span>
+                    <span>Event Coherence</span>
+                </div>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Documentation</div>
+                <div class="nav-item" onclick="showSection('tech-stack')">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Tech Stack</span>
+                </div>
+                <div class="nav-item" onclick="showSection('methodology')">
+                    <span class="nav-icon">📋</span>
+                    <span>Methodology</span>
+                </div>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Links</div>
+                <a href="https://linkedin.com/in/your-profile" target="_blank" class="nav-item" style="text-decoration: none; color: inherit;">
+                    <span class="nav-icon">💼</span>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/your-username" target="_blank" class="nav-item" style="text-decoration: none; color: inherit;">
+                    <span class="nav-icon">💻</span>
+                    <span>GitHub</span>
+                </a>
+                <a href="mailto:your-email@example.com" class="nav-item" style="text-decoration: none; color: inherit;">
+                    <span class="nav-icon">✉️</span>
+                    <span>Email</span>
+                </a>
+            </div>
+            
+            <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid #2a2f3f;">
+                <div class="sidebar-stats">
+                    <div class="sidebar-stat">
+                        <div class="sidebar-stat-value">197K</div>
+                        <div class="sidebar-stat-label">Stories</div>
+                    </div>
+                    <div class="sidebar-stat">
+                        <div class="sidebar-stat-value">9</div>
+                        <div class="sidebar-stat-label">Models</div>
+                    </div>
+                    <div class="sidebar-stat">
+                        <div class="sidebar-stat-value">2</div>
+                        <div class="sidebar-stat-label">Years</div>
+                    </div>
+                    <div class="sidebar-stat">
+                        <div class="sidebar-stat-value">1.4M</div>
+                        <div class="sidebar-stat-label">Comments</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="hero">
+                <h2>Debra Capadona</h2>
+                <p>Senior Technical Program Manager | Data Engineering & ML Systems</p>
+            </div>
+            
+            <!-- OVERVIEW SECTION -->
+            <div class="content-section active" id="overview">
+                <h2 style="margin-bottom: 25px;">System Capabilities</h2>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="icon">📈</div>
+                        <div class="value" style="font-size: 1.3em;">Linguistic Dimensions</div>
+                        <div class="label">9 BERT models analyzing emotional valence, temporal urgency, certainty collapse, and more across 2-year dataset</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="icon">💬</div>
+                        <div class="value" style="font-size: 1.3em;">Word Burst Analysis</div>
+                        <div class="label">Interactive explorer showing which topics dominated HN discussions month-by-month</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="icon">🎯</div>
+                        <div class="value" style="font-size: 1.3em;">Event Coherence</div>
+                        <div class="label">Statistical framework detecting when multiple linguistic dimensions synchronize during major events</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="icon">⚙️</div>
+                        <div class="value" style="font-size: 1.3em;">Tech Stack</div>
+                        <div class="label">Modern data engineering: PyTorch, PostgreSQL, Docker, GPU acceleration, Plotly dashboards</div>
+                    </div>
+                </div>
+                
+                <div class="viz-container">
+                    <h3>Project Overview</h3>
+                    <div style="padding: 20px; line-height: 1.8; color: #6c7a8f;">
+                        <p style="margin-bottom: 15px;">
+                            <strong style="color: #1a1d29;">Large-Scale NLP Analysis Platform</strong> built to demonstrate technical program management, 
+                            data engineering, and ML operations capabilities for senior technical roles.
+                        </p>
+                        <p>
+                            System processes 197K Hacker News stories (2024-2025), applies 9 custom BERT models for linguistic analysis, 
+                            performs statistical validation, and presents results through interactive visualizations. 
+                            Demonstrates end-to-end project delivery: architecture design, database optimization, GPU-accelerated ML inference, 
+                            and production-grade data pipelines.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DIMENSIONS SECTION -->
+            <div class="content-section" id="dimensions">
+                <div class="viz-container">
+                    <h3>Interactive Linguistic Dimensions Timeline</h3>
+                    <div class="viz-placeholder">
+                        📊 Interactive Plotly Timeline<br>
+                        <small>(iframe: interactive_dimensions.html)</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WORD BURSTS SECTION -->
+            <div class="content-section" id="word-bursts">
+                <div class="viz-container">
+                    <h3>Word Burst Explorer</h3>
+                    <div class="viz-placeholder">
+                        💬 Word Cloud Visualization<br>
+                        <small>(iframe: interactive_wordcloud.html)</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- COHERENCE SECTION -->
+            <div class="content-section" id="coherence">
+                <div class="viz-container">
+                    <h3>Event Coherence Index</h3>
+                    <div class="viz-placeholder">
+                        🎯 Event Coherence Visualization
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TECH STACK SECTION -->
+            <div class="content-section" id="tech-stack">
+                <h2 style="margin-bottom: 25px;">Technology Stack</h2>
+                
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <div class="tech-icon">🐍</div>
+                        <div class="tech-name">Python 3.11</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">🔥</div>
+                        <div class="tech-name">PyTorch</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">🤖</div>
+                        <div class="tech-name">BERT</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">🐘</div>
+                        <div class="tech-name">PostgreSQL</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">🐳</div>
+                        <div class="tech-name">Docker</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">⚡</div>
+                        <div class="tech-name">GPU/CUDA</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">📊</div>
+                        <div class="tech-name">Plotly</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">📈</div>
+                        <div class="tech-name">BERTopic</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- METHODOLOGY SECTION -->
+            <div class="content-section" id="methodology">
+                <h2 style="margin-bottom: 25px;">System Architecture & Methodology</h2>
+                
+                <div class="viz-container">
+                    <p style="line-height: 1.8; color: #6c7a8f;">
+                        Built end-to-end linguistic analysis platform processing 197K Hacker News stories across 2024-2025. 
+                        System demonstrates technical program management, large-scale data engineering, ML model deployment, 
+                        and statistical rigor required for senior technical roles at companies like Coinbase.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Activate clicked nav item
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>

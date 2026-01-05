@@ -1,0 +1,61 @@
+# RSS Feed Collector Configuration
+# Collects from multiple news sources
+
+# RSS Feeds to collect from
+feeds:
+  # Tech News
+  - name: "TechCrunch"
+    url: "https://techcrunch.com/feed/"
+  
+  - name: "Ars Technica"
+    url: "https://feeds.arstechnica.com/arstechnica/index"
+  
+  - name: "Hacker News RSS"
+    url: "https://news.ycombinator.com/rss"
+  
+  - name: "The Verge"
+    url: "https://www.theverge.com/rss/index.xml"
+  
+  # Finance News
+  - name: "Reuters Business"
+    url: "https://www.reutersagency.com/feed/?taxonomy=best-topics&post_type=best"
+  
+  - name: "MarketWatch"
+    url: "https://www.marketwatch.com/rss/"
+  
+  # General News
+  - name: "AP News"
+    url: "https://apnews.com/index.rss"
+  
+  - name: "BBC News"
+    url: "http://feeds.bbci.co.uk/news/rss.xml"
+  
+  - name: "NPR"
+    url: "https://feeds.npr.org/1001/rss.xml"
+    # Forums/Discussion
+  - name: "Metafilter"
+    url: "https://www.metafilter.com/rss/"
+  
+  - name: "Slashdot"
+    url: "http://rss.slashdot.org/Slashdot/slashdotMain"
+  
+  - name: "Lobsters"
+    url: "https://lobste.rs/rss"
+
+# Collection Settings
+collection:
+  delay_seconds: 2  # Delay between feed requests
+  
+  # Optional: Filter by date range (comment out to get all)
+  # date_range:
+  #   start_date: "2024-11-01"
+  #   end_date: "2024-12-01"
+
+# Output Configuration
+output:
+  file: "data/raw/rss/rss_feeds_latest.csv"
+
+# Metadata
+metadata:
+  description: "RSS feeds from tech, finance, and general news"
+  collected_date: "2024-12-03"

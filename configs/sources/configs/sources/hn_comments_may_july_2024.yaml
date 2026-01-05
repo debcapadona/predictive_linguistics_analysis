@@ -1,0 +1,21 @@
+# HN Comment Collector Configuration
+# Collects comments from existing HN story data
+
+# Input - existing story data
+input:
+  file: "data/raw/hackernews/hn_2024_full_year.csv"  # Changed!
+
+# Collection settings
+collection:
+  max_stories: null  # null = collect ALL stories
+  max_comment_depth: 3
+  min_comments: 5
+
+# Output
+output:
+  file: "data/raw/hackernews/hn_2024_full_year_comments.csv"  # Changed!
+
+# Metadata
+metadata:
+  description: "Comments from full year 2024 HN stories"
+  collected_date: "2024-12-04"

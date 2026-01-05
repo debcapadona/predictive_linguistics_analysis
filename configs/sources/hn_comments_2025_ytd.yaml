@@ -1,0 +1,16 @@
+# HN Comment Collector - 2025 Year-to-Date
+
+input:
+  file: "data/raw/hackernews/hn_2025_ytd.csv"
+
+collection:
+  max_stories: null  # Get all
+  max_comment_depth: 3
+  min_comments: 5
+
+output:
+  file: "data/raw/hackernews/hn_2025_ytd_comments.csv"
+
+metadata:
+  description: "Comments from 2025 YTD HN stories"
+  collected_date: "2025-12-04"

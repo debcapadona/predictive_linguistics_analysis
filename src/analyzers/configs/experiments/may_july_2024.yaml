@@ -1,0 +1,5 @@
+parameters:
+  min_z_score: 2.0
+  min_word_freq: 3
+  top_n_words: 50
+  window_days: 7  # Add this line - 7-day windows for tension curve
