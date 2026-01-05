@@ -52,7 +52,7 @@ Interactive portfolio showcasing the platform's capabilities: [Coming Soon]
 
 Debra Capadona  
 Senior Technical Program Manager  
-[LinkedIn](https://www.linkedin.com/in/debra-capadona/)
+[LinkedIn](https://www.linkedin.com/in/debcapadona/)
 
 ---
 
