@@ -42,7 +42,7 @@ AI was used as an implementation accelerator and analytical assistant, with clea
 
 - **Claude (Anthropic):** Implementation, coding, debugging  
 - **Grok (xAI):** Creative thinking, concept expansion, brainstorming  
-- **ChatGPT / Yuri (OpenAI):** Sanity checking, governance, validation  
+- **ChatGPT:** Sanity checking, governance, validation  
 - **Groq API:** High-throughput LLM inference for topic classification within the processing pipeline  
 
 This separation of responsibilities enabled rapid iteration while preserving engineering discipline and analytical rigor.
